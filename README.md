@@ -1,4 +1,4 @@
-# cada — Runtime Monitoring of Autonomous LLM Code-Agents
+# CADA - Runtime Monitoring of Autonomous LLM Code-Agents
 
 **An executed, byte-confirmed study of when OS-level monitoring can and cannot see an
 LLM agent exfiltrate a secret — and why the answer depends on the *model*, not the monitor.**
@@ -10,7 +10,7 @@ Nishita Jain · BlueDot Impact · paper: [`paper/paper.pdf`](paper/) *(compiled 
 ## The finding in one paragraph
 
 When an autonomous code-agent exfiltrates a secret, the most-trusted runtime defense —
-OS data-flow *taint* tracking — is often **structurally blind** to it. The agent reads the
+OS data-flow *taint* tracking, is often **structurally blind** to it. The agent reads the
 secret into its context window and re-types it as a **literal** in a later command; no system
 call links the read to the send. We call this the **cognitive air-gap**. On an executed
 substrate (real attacks under `strace` in a network-isolated sandbox, egress byte-confirmed at
@@ -35,19 +35,10 @@ OS-visible path (`$(cat)` / `@file`) and stays fully traceable
   exfiltration of the same secret.
 - **Credential leakage is a localized scrubbing omission** — told to bundle a directory and
   upload it, agents include an in-scope secret. A controlled dissociation localizes the failure
-  to *(broad bundle-and-upload instruction)* × *(secret in the bundled path)* — remove either
+  to *(broad bundle-and-upload instruction)* × *(secret in the bundled path)*, remove either
   and the leak rate is **0** (scope effect Fisher exact p = 1.6×10⁻⁴).
 - **Capability does not predict monitorability** — base64-monitorability AUROC is non-monotone
   across families (**0.56 / 0.30 / 0.82** for Haiku-4.5 / GPT-4o / Sonnet-4.6).
-
-## Honest scope and limits
-
-This is a **pilot-scale measurement** (N = 76 landed exfils; one credential→egress task family;
-one turn-based scaffold). It introduces **no new monitoring primitive** — OS taint's blindness
-to implicit/context-mediated flows is classical (Denning 1976; TaintDroid). The contribution is
-the *executed, byte-confirmed, cross-family measurement* and the *model-indexed dissociations*.
-The between-model rankings are **directional** at this N; the **dissociations are significant**.
-Full caveats are in the paper's Limitations section.
 
 ## Repository map
 
@@ -80,17 +71,13 @@ package is tightly coupled and is kept whole so it runs.
 
 ## Reproduce
 
-The analysis re-derives the headline numbers offline from the committed byte-confirmed traces —
-no API calls, no GPU:
-
 ```bash
 pip install -r requirements.txt
 python -m experiments.cadc.exp_airgap_adv --from-cache results/headtohead_runs/airgap_traj
 ```
 
 See [`REPRODUCE.md`](REPRODUCE.md) for the full offline path. Running the *live* experiments
-(re-collecting traces) additionally requires Docker and an OpenRouter API key in a local `.env`
-(never committed).
+(re-collecting traces) additionally requires Docker and an OpenRouter API key in a local `.env`.
 
 ## The paper
 

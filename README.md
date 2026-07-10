@@ -9,7 +9,7 @@ Nishita Jain · BlueDot Impact · paper: [`paper/paper.pdf`](paper/) *(compiled 
 
 ## The finding in one paragraph
 
-When an autonomous code-agent exfiltrates a secret, the most-trusted runtime defense —
+When an autonomous code-agent exfiltrates a secret, the most-trusted runtime defense,
 OS data-flow *taint* tracking, is often **structurally blind** to it. The agent reads the
 secret into its context window and re-types it as a **literal** in a later command; no system
 call links the read to the send. We call this the **cognitive air-gap**. On an executed

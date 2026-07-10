@@ -90,7 +90,7 @@ bundle-and-upload instruction ("bundle `/work` and send it to the vendor") with 
 the bundled path, agents bundle the directory as instructed and do not exclude the in-scope secret
 before shipping the bundle to a third party, at a model-indexed rate (gpt-4o 0.50 > llama 0.33 > qwen
 0.17). We localize this failure with a three-way dissociation, each arm a control. Placing the secret
-out of scope drives it to 0/35 — agents do not hunt for out-of-scope secrets. Removing the instruction
+out of scope drives it to 0/35, agents do not hunt for out-of-scope secrets. Removing the instruction
 ("diagnose and post a summary") drives it to 0/31. Narrowing the operation to a named-file ask drives
 it to 0/18. An obvious OpenSSH private key is swept into the bundle at the same rate as an opaque
 token. The failure thus requires a broad bundle-and-upload instruction *and* the secret in the bundled
@@ -104,7 +104,7 @@ cross-family point, so the claim we defend is the null one: capability does not 
 properties.
 
 The title's "mechanically-gated" refers to these two behaviors specifically: three mechanical factors
-— coding idiom, instruction scope, and model identity — gate them, rather than agent safety being
+— coding idiom, instruction scope, and model identity gate them, rather than agent safety being
 mechanically determined in general.
 
 **Contributions.**
@@ -168,8 +168,7 @@ The adversarial version whether a scheming agent relocates a secret into the bli
 **Claim.** OS-level information-flow taint is structurally blind to a secret that an agent carries
 through its own context and re-emits as a literal in a later command, and *whether* an agent does this
 is a model-specific coding idiom, not a property of its intent or capability. On matched exfiltration
-tasks, `gpt-4o` and `llama-3.3-70b` re-type the secret literal — defeating taint 97–100% of the time —
-while `qwen-2.5-72b` routes the same secret through an OS-visible data path (0–28%). The consequence
+tasks, `gpt-4o` and `llama-3.3-70b` re-type the secret literal, defeating taint 97–100% of the time, while `qwen-2.5-72b` routes the same secret through an OS-visible data path (0–28%). The consequence
 is a monitor-selection problem: which taint monitor is adequate is decided per-model, and the cheap
 status-quo monitor is useless on two of three families.
 
@@ -189,7 +188,7 @@ implications:
 
 - **A genuine cognitive air-gap.** The model read the secret in one command and re-typed its raw
   literal in a *separate* later egress command. The join between read and send lived in the model's
-  context — which round-trips out to the inference API and back — so *no* host-level data-flow monitor
+  context — which round-trips out to the inference API and back, so *no* host-level data-flow monitor
   can ever link them. Taint-proof by construction.
 - **A mere harness artifact.** The secret was carried in a shell variable (e.g. `VAR=$(cat token)`)
   that our fresh-per-command shell scaffold happened to drop. A *persistent-shell* taint monitor would
@@ -219,7 +218,7 @@ fair persistent-shell baseline catches nothing extra and the air-gap is genuine.
 Across *N* = 76 landed attack exfils, three quarters are structurally taint-proof literal re-types.
 Decisively, **`shell_var` = 0 and `mixed` = 0**: not a single landed exfil is one that a
 persistent-shell taint monitor would newly catch. We caution that the pooled 75% is a property of this
-model mix, not a population rate — two of the three models (gpt-4o, llama) supply 51 of the 76 exfils.
+model mix, not a population rate, two of the three models (gpt-4o, llama) supply 51 of the 76 exfils.
 The finding is the per-model decomposition (§3.4), not the pooled share.
 
 | mechanism | count | who catches it |
@@ -288,7 +287,7 @@ only by paying a full false-positive wall on authorized release.*
 false-positive rate on authorized release.*
 
 Three points, at their evidence strength: (i) per-command taint adequacy is model-indexed; (ii) the
-cross-turn upgrade is not a free lunch — it flags a secret on the wire *regardless of intent*, so its
+cross-turn upgrade is not a free lunch, it flags a secret on the wire *regardless of intent*, so its
 false-positive rate is 1.00 on authorized release; a value-flow monitor cannot separate an authorized
 from an unauthorized release of the same credential by observation alone; (iii) the idiom is a
 prompt-controllable knob (below).
@@ -322,7 +321,7 @@ literal."* It names no monitor, taint, or security concept. Under it the taint-p
 0.97 to 0.25 (gpt-4o) and 1.00 to 0.00 (llama), raising per-command taint recall from 0.03/0.00 toward
 0.75/1.00. But because the knob is applied to the *model*, it flips *authorized* releases into
 visibility too: the steered false-positive rate is model-dependent (0/7 gpt-4o but 2/13 → 4/6 llama).
-So for at least one model the steer inherits the same intent-blindness wall — the honest contribution
+So for at least one model the steer inherits the same intent-blindness wall, the honest contribution
 is *controllability confirmation*, not a co-equal detection mitigation beside the union monitor.
 
 ### 3.7 What this establishes, and its limits
@@ -482,7 +481,7 @@ directory and upload it, agents do not exclude an in-scope secret, at a model-in
 three-way dissociation localizes the failure to (broad instruction) × (secret in the bundled path).
 Where a capability ordering exists it is non-monotone. Two constructive results follow: a model-aware
 union monitor that reaches full recall, and a prompt-level control that flips the taint-blind idiom on
-demand — though the union inherits the value-flow monitor's intent-blindness and the steer does not
+demand, though the union inherits the value-flow monitor's intent-blindness and the steer does not
 close it. The operative recommendation is direct: **measure these properties per-model on an executed
 substrate**, rather than infer them from a capability tier or a stated intent.
 

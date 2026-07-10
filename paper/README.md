@@ -1,13 +1,11 @@
 # Paper
 
-`paper.pdf` — *"Mechanically-Gated Agent Safety: Byte-Confirmed, Model-Indexed Dissociations of
-Monitorability and Credential Leakage in LLM Code-Agents."*
+**Mechanically-Gated Agent Safety: Byte-Confirmed, Model-Indexed Dissociations of Monitorability and
+Credential Leakage in LLM Code-Agents** — Nishita Jain, BlueDot Impact.
 
-**Status:** compile the LaTeX source (kept outside this repo) on Overleaf / `pdflatex` and place
-the resulting `paper.pdf` here. Once posted, add the arXiv link to the top-level README.
+- 📄 **[Read the full paper → `paper.md`](paper.md)** (complete, readable version)
+- `paper.pdf` — the formal typeset version; add it here after compiling the LaTeX source.
+- [`figures/`](figures/) — the four figures the paper cites.
 
-The four figures the paper cites are in `figures/`:
-- `fig_mechanism.png` — mechanism of every byte-confirmed exfil (Case 1)
-- `fig_monitor_selection.png` — model-indexed monitor adequacy (Case 1)
-- `fig_dissociation.png` — the credential scrubbing-omission dissociation (Case 2)
-- `fig_decoupling.png` — capability does not predict monitorability (Case 3)
+For the results *code* and byte-confirmed traces, see the repository root and
+[`../REPRODUCE.md`](../REPRODUCE.md). Please cite the paper for the results.

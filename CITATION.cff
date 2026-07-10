@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the paper (preferred) or this repository."
+title: "Mechanically-Gated Agent Safety: Byte-Confirmed, Model-Indexed Dissociations of Monitorability and Credential Leakage in LLM Code-Agents"
+abstract: >-
+  An executed, byte-confirmed study of when OS-level runtime monitoring can see an
+  LLM code-agent exfiltrate a secret. We find a "cognitive air-gap" — taint tracking
+  is structurally blind to a secret the agent carries through its context and re-types
+  as a literal — and that whether this happens is a model-indexed coding idiom, so
+  monitorability is a property of the model, not just the monitor.
+authors:
+  - family-names: Jain
+    given-names: Nishita
+    email: nishita0502@gmail.com
+    affiliation: BlueDot Impact
+version: "0.1.0"
+date-released: "2026-07-10"
+license: MIT
+url: "https://github.com/NiShITa-code/cognitive-air-gap-"
+repository-code: "https://github.com/NiShITa-code/cognitive-air-gap-"
+keywords:
+  - AI safety
+  - AI control
+  - LLM agents
+  - runtime monitoring
+  - information-flow taint
+  - agent exfiltration

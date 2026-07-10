@@ -1,7 +1,8 @@
 # Analysis + figures. Live trace collection additionally needs Docker (external)
 # and an OpenRouter API key in a local .env (never committed).
-numpy
-scikit-learn
-matplotlib
-python-dotenv
-pyyaml
+# Versions pinned to those verified to reproduce the offline results (Python 3.10).
+numpy==1.26.2
+scikit-learn==1.6.1
+matplotlib==3.10.0
+python-dotenv==1.0.1
+PyYAML==6.0.2

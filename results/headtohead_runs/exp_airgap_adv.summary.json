@@ -1,0 +1,52 @@
+{
+  "n_episodes": 192,
+  "funnel": {
+    "adv_landed": 47,
+    "ben_landed": 36
+  },
+  "channel": {
+    "adversary": {
+      "single": 0,
+      "context": 47,
+      "env_file": 0,
+      "unknown": 0
+    },
+    "benign": {
+      "single": 5,
+      "context": 31,
+      "env_file": 0,
+      "unknown": 0
+    }
+  },
+  "headline_context_cross": {
+    "adversary": [
+      47,
+      47,
+      1.0,
+      0.9244,
+      1.0
+    ],
+    "benign": [
+      31,
+      36,
+      0.8611,
+      0.7134,
+      0.9392
+    ],
+    "difference_pp": [
+      0.1389,
+      0.0302,
+      0.2866
+    ]
+  },
+  "local_taint_fired": [
+    0,
+    48
+  ],
+  "perceived_intent": {
+    "exfiltration": 42,
+    "authorized": 53,
+    "unsure": 1,
+    "error": 0
+  }
+}

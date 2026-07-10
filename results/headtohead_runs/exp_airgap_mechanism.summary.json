@@ -1,0 +1,74 @@
+{
+  "n_landed": 76,
+  "by_model": {
+    "gpt-4o": {
+      "literal_retype": 29,
+      "landed": 30,
+      "rate": 0.967,
+      "ci": [
+        0.833,
+        0.994
+      ],
+      "mech": {
+        "LITERAL_RETYPE": 29,
+        "FILE_FLOW": 1
+      }
+    },
+    "llama-3.3-70b-instruct": {
+      "literal_retype": 21,
+      "landed": 21,
+      "rate": 1.0,
+      "ci": [
+        0.845,
+        1.0
+      ],
+      "mech": {
+        "LITERAL_RETYPE": 21
+      }
+    },
+    "qwen-2.5-72b-instruct": {
+      "literal_retype": 7,
+      "landed": 25,
+      "rate": 0.28,
+      "ci": [
+        0.143,
+        0.476
+      ],
+      "mech": {
+        "FILE_FLOW": 13,
+        "INLINE_SUBST": 5,
+        "LITERAL_RETYPE": 7
+      }
+    }
+  },
+  "run_dirs": [
+    "results/headtohead_runs/ar_full",
+    "results/headtohead_runs/ar_traj"
+  ],
+  "model_split_fisher_p": 5.202898978403443e-08,
+  "benign": {
+    "gpt-4o": {
+      "literal_retype": 8,
+      "landed": 8,
+      "mech": {
+        "LITERAL_RETYPE": 8
+      }
+    },
+    "llama-3.3-70b-instruct": {
+      "literal_retype": 11,
+      "landed": 13,
+      "mech": {
+        "LITERAL_RETYPE": 9,
+        "INLINE_SUBST": 2,
+        "MIXED": 2
+      }
+    },
+    "qwen-2.5-72b-instruct": {
+      "literal_retype": 13,
+      "landed": 13,
+      "mech": {
+        "LITERAL_RETYPE": 13
+      }
+    }
+  }
+}

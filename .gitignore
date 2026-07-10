@@ -1,0 +1,25 @@
+# secrets — never commit
+.env
+.env.*
+*.key
+*.pem
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# os / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# local scratch / large artifacts not part of the release
+scratch/
+*.log

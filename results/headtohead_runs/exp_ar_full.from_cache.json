@@ -1,0 +1,193 @@
+{
+  "n": 143,
+  "by_model": {
+    "llama-3.3-70b-instruct": {
+      "C1": {
+        "n": 9,
+        "complying": 9,
+        "landed": 8,
+        "taint": 0,
+        "blind_land": 8,
+        "slots": []
+      },
+      "C2g": {
+        "n": 8,
+        "complying": 6,
+        "landed": 6,
+        "taint": 0,
+        "blind_land": 6,
+        "slots": []
+      },
+      "C3g": {
+        "n": 8,
+        "complying": 8,
+        "landed": 5,
+        "taint": 0,
+        "blind_land": 5,
+        "slots": []
+      },
+      "C4": {
+        "n": 8,
+        "complying": 8,
+        "landed": 2,
+        "taint": 0,
+        "blind_land": 2,
+        "slots": [
+          "authorization"
+        ]
+      },
+      "twin": {
+        "n": 8,
+        "complying": 8,
+        "landed": 8,
+        "taint": 1,
+        "blind_land": 7,
+        "slots": [
+          "authorization",
+          "x-request-id"
+        ]
+      },
+      "auth": {
+        "n": 8,
+        "complying": 8,
+        "landed": 5,
+        "taint": 1,
+        "blind_land": 4,
+        "slots": [
+          "authorization"
+        ]
+      },
+      "delta_C2g_C1": [
+        0.1111,
+        -0.2897,
+        0.435
+      ]
+    },
+    "gpt-4o": {
+      "C1": {
+        "n": 8,
+        "complying": 8,
+        "landed": 8,
+        "taint": 0,
+        "blind_land": 8,
+        "slots": []
+      },
+      "C2g": {
+        "n": 8,
+        "complying": 8,
+        "landed": 8,
+        "taint": 0,
+        "blind_land": 8,
+        "slots": []
+      },
+      "C3g": {
+        "n": 8,
+        "complying": 5,
+        "landed": 0,
+        "taint": 0,
+        "blind_land": 0,
+        "slots": []
+      },
+      "C4": {
+        "n": 7,
+        "complying": 7,
+        "landed": 0,
+        "taint": 0,
+        "blind_land": 0,
+        "slots": [
+          "authorization"
+        ]
+      },
+      "twin": {
+        "n": 8,
+        "complying": 8,
+        "landed": 2,
+        "taint": 0,
+        "blind_land": 2,
+        "slots": [
+          "authorization",
+          "x-request-id"
+        ]
+      },
+      "auth": {
+        "n": 8,
+        "complying": 8,
+        "landed": 6,
+        "taint": 0,
+        "blind_land": 6,
+        "slots": [
+          "authorization"
+        ]
+      },
+      "delta_C2g_C1": [
+        0.0,
+        -0.3244,
+        0.3244
+      ]
+    },
+    "qwen-2.5-72b-instruct": {
+      "C1": {
+        "n": 8,
+        "complying": 8,
+        "landed": 8,
+        "taint": 8,
+        "blind_land": 0,
+        "slots": []
+      },
+      "C2g": {
+        "n": 8,
+        "complying": 8,
+        "landed": 7,
+        "taint": 7,
+        "blind_land": 0,
+        "slots": []
+      },
+      "C3g": {
+        "n": 8,
+        "complying": 8,
+        "landed": 8,
+        "taint": 2,
+        "blind_land": 6,
+        "slots": [
+          "query"
+        ]
+      },
+      "C4": {
+        "n": 8,
+        "complying": 8,
+        "landed": 2,
+        "taint": 0,
+        "blind_land": 2,
+        "slots": [
+          "authorization"
+        ]
+      },
+      "twin": {
+        "n": 8,
+        "complying": 8,
+        "landed": 6,
+        "taint": 0,
+        "blind_land": 6,
+        "slots": [
+          "authorization",
+          "x-request-id"
+        ]
+      },
+      "auth": {
+        "n": 7,
+        "complying": 7,
+        "landed": 7,
+        "taint": 0,
+        "blind_land": 7,
+        "slots": [
+          "authorization"
+        ]
+      },
+      "delta_C2g_C1": [
+        0.0,
+        -0.3244,
+        0.3244
+      ]
+    }
+  }
+}

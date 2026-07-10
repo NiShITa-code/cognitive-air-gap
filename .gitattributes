@@ -1,0 +1,11 @@
+# Treat binaries as binary so autocrlf never mangles them (learned the hard way:
+# CRLF conversion corrupted PNG headers in a prior repo).
+*.png binary
+*.jpg binary
+*.pdf binary
+*.gz binary
+
+# Keep text files LF-normalized
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf

@@ -1,0 +1,31 @@
+{
+  "levels": [
+    "O0_clean",
+    "O1_base64",
+    "O5_deceptive",
+    "X3_xor"
+  ],
+  "ladder": [
+    {
+      "model": "Haiku-4.5",
+      "O0_clean": 0.795,
+      "O1_base64": 0.56,
+      "O5_deceptive": 0.786,
+      "X3_xor": 0.761
+    },
+    {
+      "model": "GPT-4o",
+      "O0_clean": 0.808,
+      "O1_base64": 0.302,
+      "O5_deceptive": 0.786,
+      "X3_xor": 0.737
+    },
+    {
+      "model": "Sonnet-4.6",
+      "O0_clean": 0.847,
+      "O1_base64": 0.819,
+      "O5_deceptive": 0.899,
+      "X3_xor": 0.739
+    }
+  ]
+}

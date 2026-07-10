@@ -1,0 +1,7 @@
+# Analysis + figures. Live trace collection additionally needs Docker (external)
+# and an OpenRouter API key in a local .env (never committed).
+numpy
+scikit-learn
+matplotlib
+python-dotenv
+pyyaml

@@ -1,7 +1,7 @@
 # CADA - Runtime Monitoring of Autonomous LLM Code-Agents
 
 **An executed, byte-confirmed study of when OS-level monitoring can and cannot see an
-LLM agent exfiltrate a secret — and why the answer depends on the *model*, not the monitor.**
+LLM agent exfiltrate a secret and why the answer depends on the *model*, not the monitor.**
 
 Nishita Jain · BlueDot Impact · paper: [`paper/paper.pdf`](paper/) *(compiled separately — see note below)*
 

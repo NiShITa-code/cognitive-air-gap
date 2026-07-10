@@ -15,8 +15,8 @@ authors:
 version: "0.1.0"
 date-released: "2026-07-10"
 license: MIT
-url: "https://github.com/NiShITa-code/cognitive-air-gap-"
-repository-code: "https://github.com/NiShITa-code/cognitive-air-gap-"
+url: "https://github.com/NiShITa-code/cognitive-air-gap"
+repository-code: "https://github.com/NiShITa-code/cognitive-air-gap"
 keywords:
   - AI safety
   - AI control

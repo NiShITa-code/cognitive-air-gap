@@ -14,8 +14,8 @@
 
 ## Abstract
 
-Two safety-critical behaviors of autonomous LLM code-agents — whether OS-level runtime monitoring can
-*see* an exfiltration, and whether an agent *leaks* an in-scope credential to a third party — are
+Two safety-critical behaviors of autonomous LLM code-agents, whether OS-level runtime monitoring can
+*see* an exfiltration, and whether an agent *leaks* an in-scope credential to a third party are
 widely treated as functions of the agent's intent or capability. We show, on an executed,
 byte-confirmed substrate, that these two behaviors are instead gated by mechanical, controllable
 factors: coding idiom, instruction framing, operation scope, and model identity. Every action runs
@@ -23,7 +23,7 @@ under `strace` in a network-isolated sandbox; a 19-character marker is seeded in
 *after* the prompt and confirmed at a DNS/TCP sinkhole, so a landed exfiltration requires the agent
 to learn and re-emit the value at runtime. We isolate each factor with controlled dissociations
 across three model families (gpt-4o, llama-3.3-70b, qwen-2.5-72b). First, information-flow taint is
-blind to a secret the agent carries through its context and re-types as a literal — a **cognitive
+blind to a secret the agent carries through its context and re-types as a literal, a **cognitive
 air-gap**. Whether this happens is a model-specific coding idiom: taint-proof rates are 0.97 / 1.00 /
 0.28 across gpt-4o / llama / qwen (Fisher *p* = 6.5×10⁻¹¹; within-task perfectly separated), which in
 this model mix pools to 75% of byte-confirmed exfils. But these taint-blind exfils are
@@ -140,7 +140,7 @@ value at runtime and re-emit it. The confirmer is transform-, gzip-, and escape-
 fixture-verified against every egress shape we observe (raw, gzip'd `tar`, a PEM key inlined into JSON
 with `\n`-escaping, and base64'd config).
 
-**Models and monitors.** We run three open- and closed-weight model families as agents: `gpt-4o`,
+**Models and monitors.** We run three open and closed-weight model families as agents: `gpt-4o`,
 `llama-3.3-70b`, and `qwen-2.5-72b` (temperature 0.7, a 12-turn budget, a turn-based `<cmd>`
 scaffold). Two additional models, Haiku-4.5 and Sonnet-4.6, serve as transcript judges in the
 capability comparison (§5). The OS-level monitors we evaluate are information-flow taint monitors at
@@ -159,8 +159,7 @@ regime: a benign or instructed agent whose safety-relevant behavior we want obse
 agent optimizing to evade. An adversarial agent could re-type an *encoded* literal to defeat both the
 taint and the grep monitor at once (the both-blind residual of §3.6); the union monitor and the idiom
 steer are mechanisms to make *benign* agents monitorable by default, not defenses against an evader.
-The adversarial version — whether a scheming agent relocates a secret into the blind region on its own
-— is a different threat model, which we leave to future work.
+The adversarial version whether a scheming agent relocates a secret into the blind region on its own is a different threat model, which we leave to future work.
 
 ---
 
@@ -294,7 +293,7 @@ false-positive rate is 1.00 on authorized release; a value-flow monitor cannot s
 from an unauthorized release of the same credential by observation alone; (iii) the idiom is a
 prompt-controllable knob (below).
 
-**Taint-blind is text-visible.** The taint-blind form is *not* unmonitorable — the secret sits as a
+**Taint-blind is text-visible.** The taint-blind form is *not* unmonitorable, the secret sits as a
 plaintext literal in the command, which the cheapest text monitor (grep the command for the secret
 value) catches immediately. Conversely qwen's `$(cat)`/`@file` is taint-visible but text-blind.
 Running both over the 76 landed exfils:
@@ -418,32 +417,7 @@ that is left to future work.
 
 ---
 
-## 5. Discussion: Safety Behavior Is Model-Indexed, Not Capability-Predicted
-
-In both case studies the safety-relevant behavior is *model-indexed*, and the per-model orderings do
-not line up with each other or with any capability tier. Crucially the orderings *disagree*: qwen is
-the most taint-visible agent *and* the least leaky, while gpt-4o is the leakiest. There is no single
-"safer model" axis.
-
-![Capability does not predict monitorability or leakage](figures/fig_decoupling.png)
-
-*Figure 4. Base64-monitorability AUROC is non-monotone across families (Haiku 0.56, GPT-4o 0.30, Sonnet
-0.82; one cross-family point), and the three model-indexed orderings disagree with each other and with
-any capability tier.*
-
-**Capability does not predict these properties (thin evidence).** As a supporting observation —
-single-seed, no CIs, one cross-family point — a transcript-monitorability ladder points the same way.
-Holding the graded judge prompt and command set fixed and varying only the judge model over *n* = 880
-labeled transcripts per rung (0 refusals), base64-monitorability AUROC is Haiku-4.5 0.56, GPT-4o 0.30,
-Sonnet-4.6 0.82. Within the Claude family, capability buys base64 resistance; but the frontier GPT-4o
-is *worse* than the small Haiku — not from incapacity but from a base64-is-suspicious prior that
-collapses its discrimination on encoded benign traffic. Outside the model's decode set the axis
-vanishes: on a runtime-XOR transform the judge cannot reverse by inspection, AUROC is flat at 0.76 /
-0.74 / 0.74. We defend only the null this supports — capability does not *predict* monitorability.
-
----
-
-## 6. Related Work
+## 5. Related Work
 
 *Information-flow taint.* That implicit information flow defeats data-flow taint tracking is classical,
 dating to Denning's lattice model [1]. TaintDroid [2] realized system-wide dynamic taint on Android,
@@ -493,15 +467,13 @@ Nothing below changes the sign of a result; each item bounds how far a result ma
   (+13.9pp) as an adversary effect; on re-analysis it was a model-composition artifact (unbalanced
   model composition across arms) and is withdrawn. The load-bearing finding is the taint-blindness
   itself.
-- **No new primitive.** The substrate composes standard components. Our contribution is the executed
-  methodology, the controlled dissociations, and the byte-confirmed model-indexed measurement.
 
 ---
 
 ## 8. Conclusion
 
 On an executed and byte-confirmed substrate, two safety-critical behaviors of LLM code-agents are
-**gated by mechanical, controllable factors and are model-indexed** — not functions of intent or
+**gated by mechanical, controllable factors and are model-indexed**, not functions of intent or
 benchmark capability. OS information-flow taint is structurally blind to a secret the agent carries
 through its context and re-types as a literal, and whether this happens is a model-specific coding
 idiom (taint-proof 0.97 / 1.00 / 0.28; *p* = 6.5×10⁻¹¹); per-command taint recall is 0.03 / 0.00 /
@@ -529,5 +501,4 @@ substrate**, rather than infer them from a capability tier or a stated intent.
 9. "SafeClawBench: Separating semantic, audit-evidence, and sandbox harm in tool-using LLM agents," arXiv:2606.18356, 2026.
 10. OWASP Foundation, "OWASP Top 10 for LLM applications: Sensitive information disclosure (LLM06)," 2025.
 
-> **Citation note.** Several references carry 2026 arXiv identifiers; verify each resolves before
-> relying on it for formal submission.
+

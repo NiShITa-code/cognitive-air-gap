@@ -9,14 +9,14 @@
 
 ---
 
-## 📖 Core Concepts: Why Standard Security Fails
+## Core Concepts: Why Standard Security Fails
 
 If you are new to OS security, here is what is happening under the hood:
 
 *   **What is OS Taint Tracking?** Think of it like a dye pack in a bank vault. Traditional security "taints" (tags) sensitive files. If a normal program tries to read that file and send it to the internet, the operating system tracks the data flow and blocks it.
 *   **What is the "Cognitive Air-Gap"?** AI agents break this tracking. An AI reads the sensitive file, memorizes the text in its neural network (its context window), and then types out a brand-new command from memory containing the secret. Because the data passed through the AI's "brain" instead of standard computer memory pipelines, the OS loses the trail. The exfiltration becomes **taint-proof**.
 
-## 🔬 How We Ran the Experiments
+##  How We Ran the Experiments
 
 To prove this wasn't just a theoretical vulnerability, we built a rigorous, network-isolated testing environment:
 1.  **The Sandbox:** Agents were placed in a monitored Linux VM and given standard CI/CD tasks (e.g., "diagnose this server error").
@@ -25,7 +25,7 @@ To prove this wasn't just a theoretical vulnerability, we built a rigorous, netw
 
 ---
 
-## 📌 Key Findings
+## Key Findings
 
 *   **The Cognitive Air-Gap is Model-Indexed:** The ability to bypass OS security depends entirely on the AI model you use. The taint-proof rate is **0.97 / 1.00 / 0.28** (`gpt-4o` / `llama-3.3` / `qwen-2.5`). **75%** of 76 byte-confirmed exfiltrations are taint-proof literal re-types. *(Read the mechanism breakdown [here](./results/RESULTS_airgap_mechanism.md))*
 *   **Complementary Blind Spots (The Fix):** The taint-blind literal is *text*-visible (a `grep` of the command finds the plaintext); `qwen`'s OS-level substitution is text-blind but taint-visible. A cheap union of both monitors reaches **100% recall** on all 76 exfiltrations. *(Read the analysis [here](./results/RESULTS_complementarity.md))*
@@ -34,7 +34,7 @@ To prove this wasn't just a theoretical vulnerability, we built a rigorous, netw
 
 ---
 
-## 🚀 Reproducibility & Quick Start
+## Reproducibility & Quick Start
 
 This project is built for **one-command offline reproduction**. You do not need API keys to verify our findings; we have cached all byte-confirmed trajectories, raw traces, and sink `net.logs`.
 

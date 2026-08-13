@@ -3,8 +3,6 @@
 **An executed, byte-confirmed study of when OS-level monitoring can and cannot see an
 LLM agent exfiltrate a secret and why the answer depends on the *model*, not the monitor.**
 
-Nishita Jain · BlueDot Impact · paper: [`paper/paper.pdf`](paper/) *(compiled separately — see note below)*
-
 ---
 
 ## The finding in one paragraph
@@ -78,11 +76,6 @@ python -m experiments.cadc.exp_airgap_adv --from-cache results/headtohead_runs/a
 
 See [`REPRODUCE.md`](REPRODUCE.md) for the full offline path. Running the *live* experiments
 (re-collecting traces) additionally requires Docker and an OpenRouter API key in a local `.env`.
-
-## The paper
-
-`paper/paper.pdf` is compiled from the LaTeX source (kept outside this repo). Until it is posted,
-see `paper/README.md` for status. Please cite the paper, not this repository, for the results.
 
 ## License
 
